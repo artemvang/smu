@@ -42,8 +42,6 @@ static Parser parsers[] = { dounderline, docomment, dolineprefix,
 static int nohtml = 0;
 
 static Tag lineprefix[] = {
-	{ "   ",	0,	"<pre><code>", "</code></pre>" },
-	{ "\t",		0,	"<pre><code>", "</code></pre>" },
 	{ "> ",		2,	"<blockquote>",	"</blockquote>" },
 	{ "###### ",	1,	"<h6>",		"</h6>" },
 	{ "##### ",	1,	"<h5>",		"</h5>" },
@@ -51,7 +49,7 @@ static Tag lineprefix[] = {
 	{ "### ",	1,	"<h3>",		"</h3>" },
 	{ "## ",	1,	"<h2>",		"</h2>" },
 	{ "# ",		1,	"<h1>",		"</h1>" },
-	{ "- - -\n",	1,	"<hr />",	""},
+	{ "---\n",	1,	"<hr />",	""},
 };
 
 static Tag underline[] = {
@@ -60,14 +58,15 @@ static Tag underline[] = {
 };
 
 static Tag surround[] = {
-	{ "``",		0,	"<code>",	"</code>" },
-	{ "`",		0,	"<code>",	"</code>" },
-	{ "___",	1,	"<strong><em>",	"</em></strong>" },
-	{ "***",	1,	"<strong><em>",	"</em></strong>" },
+	{ "```",	0,	"<code>",	"</code>" },
+	{ "\"",		0,	"“",	"”" },
+	{ "'",		0,	"‘",	"’" },
+	{ "$$",		0,	"$$",	"$$" },
+	{ "$",		0,	"$",	"$" },
+ 	{ "**",		1,	"<strong>",	"</strong>" },
+ 	{ "*",		1,	"<em>",		"</em>" },
 	{ "__",		1,	"<strong>",	"</strong>" },
-	{ "**",		1,	"<strong>",	"</strong>" },
 	{ "_",		1,	"<em>",		"</em>" },
-	{ "*",		1,	"<em>",		"</em>" },
 };
 
 static const char *replace[][2] = {
@@ -86,6 +85,13 @@ static const char *replace[][2] = {
 	{ "\\-",	"-" },
 	{ "\\.",	"." },
 	{ "\\!",	"!" },
+	{ "'",	    "’" },
+	{ "---",	"—" },
+	{ "--",	    "–" },
+	{ "...",	"…" },
+	{ "(C)",	"©" },
+	{ "(TM)",	"™" },
+	{ "(R)",	"®" },
 };
 
 static const char *insert[][2] = {
